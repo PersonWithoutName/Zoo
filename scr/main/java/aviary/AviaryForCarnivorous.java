@@ -24,7 +24,7 @@ public class AviaryForCarnivorous extends Aviary {
         if (aviarySize > animals.size() && animal instanceof Carnivorous) {
             animals.add((Carnivorous) animal);
             animalCount = animals.size();
-            System.out.println(animal.getName() + " in aviary");
+            System.out.println(animal.getName() + " placed in Carnivorous aviary");
         } else {
             System.out.println("Aviary is full!");
         }
