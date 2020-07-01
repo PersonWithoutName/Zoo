@@ -10,11 +10,11 @@ public class Main {
         AviaryForCarnivorous aviaryForCarnivorous = new AviaryForCarnivorous(5);
         AviaryForHerbivore aviaryForHerbivore = new AviaryForHerbivore(10);
 
-        for (int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             aviaryForHerbivore.addAnimal(new Duck());
             aviaryForCarnivorous.addAnimal(new Tiger());
         }
-        for (int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             aviaryForCarnivorous.addAnimal(new Lion());
             aviaryForHerbivore.addAnimal(new Zebra());
         }
@@ -23,7 +23,7 @@ public class Main {
         aviaries.add(aviaryForHerbivore);
         aviaries.add(aviaryForCarnivorous);
 
-        Food[] foods = new Food[] {new Beef(), new Grass(), new Pork(),new Vegetables()};
+        Food[] foods = new Food[]{new Beef(), new Grass(), new Pork(), new Vegetables()};
 
         for (Aviary aviary : aviaries) {
             for (int i = 0; i < aviary.getCount(); i++) {
