@@ -25,8 +25,19 @@ public class AviaryForHerbivore extends Aviary {
         if (aviarySize > animals.size() && animal instanceof Herbivore) {
             animals.add((Herbivore) animal);
             animalCount = animals.size();
+            System.out.println(animal.getName() + " in aviary");
         } else {
             System.out.println("Aviary is full!");
         }
+    }
+
+    @Override
+    public int getCount() {
+        return 0;
+    }
+
+    @Override
+    public Animal getAnimalNumber(int i) {
+        return null;
     }
 }
