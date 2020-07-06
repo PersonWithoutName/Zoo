@@ -13,7 +13,7 @@ public abstract class Animal {
         return name;
     }
 
-    public abstract void eat(Food food);
+    public abstract void eat(Food food) throws WrongFoodException;
 
     @Override
     public String toString() {

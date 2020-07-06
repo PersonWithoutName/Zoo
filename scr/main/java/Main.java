@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws WrongFoodException {
         AviaryForCarnivorous aviaryForCarnivorous = new AviaryForCarnivorous(5);
         AviaryForHerbivore aviaryForHerbivore = new AviaryForHerbivore(10);
 
