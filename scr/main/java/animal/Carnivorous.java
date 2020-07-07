@@ -1,7 +1,9 @@
 package animal;
 
-import food.Food;
-import food.MeatFoods;
+import food.AllFood;
+
+import static food.AllFood.BEEF;
+import static food.AllFood.PORK;
 
 public abstract class Carnivorous extends Animal {
 
@@ -10,11 +12,20 @@ public abstract class Carnivorous extends Animal {
     }
 
     @Override
-    public void eat(Food food) throws WrongFoodException {
-        if (food instanceof MeatFoods) {
-            System.out.println(getName() + " eating " + food);
+    public void eat(AllFood allFood) {
+//        if (MeatFood.valueOf(meatFood)) {
+//            System.out.println(getName() + " eating " + food);
+//        } else {
+//            throw new WrongFoodException(getName() + " don't eat this food");
+//        }
+        if (allFood == PORK || allFood == BEEF) {
+            System.out.println(getName() + " eating " + allFood.getFoodName());
         } else {
-            throw new WrongFoodException(getName() + " don't eat this food");
+            try {
+                throw new WrongFoodException("WrongFood");
+            } catch (Exception e) {
+                System.err.println(getName() + " don't eat this food");
+            }
         }
     }
 }

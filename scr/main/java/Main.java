@@ -23,15 +23,20 @@ public class Main {
         aviaries.add(aviaryForHerbivore);
         aviaries.add(aviaryForCarnivorous);
 
-        Food[] foods = new Food[]{new Beef(), new Grass(), new Pork(), new Vegetables()};
+        List <AllFood> allFoodArrayList= new ArrayList<>();
+
+        allFoodArrayList.add(AllFood.BEEF);
+        allFoodArrayList.add(AllFood.GRASS);
+        allFoodArrayList.add(AllFood.PORK);
+        allFoodArrayList.add(AllFood.VEGETABLES);
+
 
         for (Aviary aviary : aviaries) {
             for (int i = 0; i < aviary.getCount(); i++) {
-                int random = (int) (Math.random() * foods.length);
-                Food food = foods[random];
+                int random = (int) (Math.random() * 4);
                 Animal animal = aviary.getAnimalNumber(i);
-                System.out.println(animal + " received from a zoo worker: " + food);
-                animal.eat(food);
+                System.out.println(animal + " received from a zoo worker: " + allFoodArrayList.get(random));
+                animal.eat(allFoodArrayList.get(random));
             }
         }
 

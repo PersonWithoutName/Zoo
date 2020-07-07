@@ -1,6 +1,6 @@
 package animal;
 
-import food.Food;
+import food.AllFood;
 
 public abstract class Animal {
     private String name;
@@ -13,7 +13,7 @@ public abstract class Animal {
         return name;
     }
 
-    public abstract void eat(Food food) throws WrongFoodException;
+    public abstract void eat(AllFood allFood) throws WrongFoodException;
 
     @Override
     public String toString() {

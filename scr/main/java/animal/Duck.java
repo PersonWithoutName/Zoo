@@ -1,8 +1,9 @@
 package animal;
 
-import food.Food;
-import food.MeatFoods;
-import food.Plantfoods;
+import food.AllFood;
+
+import static food.AllFood.BEEF;
+import static food.AllFood.PORK;
 
 public class Duck extends Herbivore {
     public Duck(String name) {
@@ -10,9 +11,9 @@ public class Duck extends Herbivore {
     }
 
     @Override
-    public void eat(Food food) {
-        if (food instanceof Plantfoods || food instanceof MeatFoods) {
-            System.out.println(getName() + " eating " + food);
+    public void eat(AllFood allFood) {
+        if (allFood == AllFood.GRASS || allFood == AllFood.VEGETABLES ||allFood == PORK || allFood == BEEF ) {
+            System.out.println(getName() + " eating " + allFood);
         }
     }
 

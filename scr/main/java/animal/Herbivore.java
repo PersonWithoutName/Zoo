@@ -1,7 +1,6 @@
 package animal;
 
-import food.Food;
-import food.Plantfoods;
+import food.AllFood;
 
 public abstract class Herbivore extends Animal {
     Herbivore(String name) {
@@ -9,12 +8,15 @@ public abstract class Herbivore extends Animal {
     }
 
     @Override
-    public void eat(Food food) throws WrongFoodException {
-
-        if (food instanceof Plantfoods) {
-            System.out.println(getName() + " eating " + food);
+    public void eat(AllFood allFood) {
+        if (allFood == AllFood.GRASS || allFood == AllFood.VEGETABLES){
+            System.out.println(getName() + " eating " + allFood.getFoodName());
         } else {
-            throw new WrongFoodException(getName() + " don't eat this food");
+            try {
+                throw new WrongFoodException("WrongFood");
+            } catch (Exception e) {
+                System.err.println(getName() + " don't eat this food");
+            }
         }
     }
 }
