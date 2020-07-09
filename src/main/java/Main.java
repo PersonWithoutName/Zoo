@@ -1,12 +1,43 @@
 import animal.*;
 import aviary.*;
+import com.google.gson.Gson;
 import food.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    private static final Logger log = LogManager.getLogger();
+
     public static void main(String[] args) throws WrongFoodException {
+        Gson gson = new Gson();
+        ZooWorker zooWorker = null;
+
+        try (FileReader reader = new FileReader("ZooWorker.json")) {
+            if (reader.ready()) {
+                zooWorker = gson.fromJson(reader, ZooWorker.class);
+                log.info("Object load success");
+            }
+        } catch (IOException e) {
+            log.error("Failed to load the object.");
+        }
+
+        if (zooWorker == null) {
+            log.info("Create and load an object into a file");
+            try (FileWriter writer = new FileWriter("ZooWorker.json")) {
+                zooWorker = new ZooWorker("Bob", 45);
+                gson.toJson(zooWorker, writer);
+                writer.flush();
+            } catch (IOException e) {
+                log.error("Failed to save the object.");
+            }
+        }
+
         AviaryForCarnivorous aviaryForCarnivorous = new AviaryForCarnivorous(5);
         AviaryForHerbivore aviaryForHerbivore = new AviaryForHerbivore(10);
 
@@ -23,7 +54,7 @@ public class Main {
         aviaries.add(aviaryForHerbivore);
         aviaries.add(aviaryForCarnivorous);
 
-        List <AllFood> allFoodArrayList= new ArrayList<>();
+        List<AllFood> allFoodArrayList = new ArrayList<>();
 
         allFoodArrayList.add(AllFood.BEEF);
         allFoodArrayList.add(AllFood.GRASS);
@@ -40,5 +71,17 @@ public class Main {
             }
         }
 
+        log.info("Overwriting the changed object");
+        try (FileWriter writer = new FileWriter("ZooWorker.json")) {
+            if (zooWorker != null) {
+                zooWorker.setDays(zooWorker.getDays() + 1);
+                gson.toJson(zooWorker, writer);
+                writer.flush();
+            } else {
+                throw new IOException();
+            }
+        } catch (IOException e) {
+            log.error("Failed to save the object.");
+        }
     }
 }
